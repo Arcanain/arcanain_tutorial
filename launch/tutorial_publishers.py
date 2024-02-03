@@ -22,7 +22,7 @@ def generate_launch_description():
         executable='float32_pub',
         output="screen",
     )
-    
+
     nodes = [
         minimal_publisher_node,
         minimal_subscriber_node,

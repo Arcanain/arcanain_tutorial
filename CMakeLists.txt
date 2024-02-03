@@ -12,17 +12,11 @@ find_package(std_msgs REQUIRED)
 
 # talker
 add_executable(talker src/publisher_member_function.cpp)
-ament_target_dependencies(talker 
-  rclcpp 
-  std_msgs
-)
+ament_target_dependencies(talker rclcpp std_msgs)
 
 # listener
 add_executable(listener src/subscriber_member_function.cpp)
-ament_target_dependencies(listener 
-  rclcpp 
-  std_msgs
-)
+ament_target_dependencies(listener rclcpp std_msgs)
 
 # float32_pub
 add_executable(float32_pub src/float32_pub.cpp)

@@ -13,10 +13,8 @@ public:
   : Node("float32_pub")
   {
     publisher_ = create_publisher<std_msgs::msg::Float32>("/data", 10);
-    timer_ =
-      create_wall_timer(
-      std::chrono::seconds(1),
-      std::bind(&Float32PubComponent::publishData, this));
+    timer_ = create_wall_timer(
+      std::chrono::seconds(1), std::bind(&Float32PubComponent::publishData, this));
   }
 
 private:
