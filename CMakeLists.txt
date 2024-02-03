@@ -34,6 +34,7 @@ install(TARGETS
 # Install other files
 install(DIRECTORY
   launch
+  rviz
   DESTINATION share/${PROJECT_NAME}
 )
 
