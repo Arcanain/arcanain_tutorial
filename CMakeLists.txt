@@ -9,6 +9,11 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(rclcpp REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
+find_package(tf2_ros REQUIRED)
 
 # talker
 add_executable(talker src/publisher_member_function.cpp)
@@ -22,13 +27,16 @@ ament_target_dependencies(listener rclcpp std_msgs)
 add_executable(float32_pub src/float32_pub.cpp)
 ament_target_dependencies(float32_pub rclcpp std_msgs)
 
-#target_link_libraries(float32_pub)
+# odometry_pub
+add_executable(odometry_pub src/odometry_pub.cpp)
+ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros)
 
 # Install Cpp executables
 install(TARGETS
   talker
   listener
   float32_pub
+  odometry_pub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
