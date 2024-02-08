@@ -1,4 +1,5 @@
 #include "geometry_msgs/msg/transform_stamped.hpp"
+#include "geometry_msgs/msg/twist.hpp"
 #include "nav_msgs/msg/odometry.hpp"
 #include "nav_msgs/msg/path.hpp"  // Pathを使用するために追加
 #include "rclcpp/rclcpp.hpp"
@@ -19,12 +20,13 @@ public:
     path_pub = this->create_publisher<nav_msgs::msg::Path>("odom_path", 50);
     odom_broadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(*this);
 
+    // cmd_velサブスクライバを追加
+    cmd_vel_subscriber = this->create_subscription<geometry_msgs::msg::Twist>(
+      "cmd_vel", 10, std::bind(&OdometryPublisher::cmd_vel_callback, this, std::placeholders::_1));
+
     x = 0.0;
     y = 0.0;
     th = 0.0;
-    vx = 0.1;
-    vy = -0.1;
-    vth = 0.1;
 
     current_time = this->get_clock()->now();
     last_time = this->get_clock()->now();
@@ -39,13 +41,20 @@ public:
   }
 
 private:
+  void cmd_vel_callback(const geometry_msgs::msg::Twist::SharedPtr msg)
+  {
+    // cmd_velメッセージから速度を更新
+    vx = msg->linear.x;
+    vth = msg->angular.z;
+  }
+
   void timer_callback()
   {
     current_time = this->get_clock()->now();
 
     double dt = (current_time - last_time).seconds();
-    double delta_x = (vx * cos(th) - vy * sin(th)) * dt;
-    double delta_y = (vx * sin(th) + vy * cos(th)) * dt;
+    double delta_x = vx * cos(th) * dt;
+    double delta_y = vx * sin(th) * dt;
     double delta_th = vth * dt;
 
     x += delta_x;
@@ -80,7 +89,7 @@ private:
     odom.pose.pose.orientation = odom_quat_msg;
 
     odom.twist.twist.linear.x = vx;
-    odom.twist.twist.linear.y = vy;
+    odom.twist.twist.linear.y = 0.0;
     odom.twist.twist.angular.z = vth;
 
     odom_pub->publish(odom);
@@ -118,11 +127,12 @@ private:
 
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub;
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub;  // パスを公開するためのパブリッシャー
+  rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_subscriber;
   std::shared_ptr<tf2_ros::TransformBroadcaster> odom_broadcaster;
   std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_broadcaster_;
   rclcpp::TimerBase::SharedPtr timer_;
   nav_msgs::msg::Path path;  // Pathメッセージのメンバ変数を追加
-  double x, y, th, vx, vy, vth;
+  double x, y, th, vx, vth;
   rclcpp::Time current_time, last_time;
 };
 
