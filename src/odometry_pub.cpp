@@ -4,6 +4,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "tf2/LinearMath/Quaternion.h"  // tf2::Quaternionを使用するために追加
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
+#include "tf2_ros/static_transform_broadcaster.h"
 #include "tf2_ros/transform_broadcaster.h"
 
 using namespace std::chrono_literals;
@@ -31,6 +32,10 @@ public:
     path.header.frame_id = "odom";  // パスのフレームIDを設定
 
     timer_ = this->create_wall_timer(100ms, std::bind(&OdometryPublisher::timer_callback, this));
+
+    // 静的な変換を送信するタイマー
+    static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
+    send_static_transform();
   }
 
 private:
@@ -95,9 +100,26 @@ private:
     last_time = current_time;
   }
 
+  void send_static_transform()
+  {
+    geometry_msgs::msg::TransformStamped static_transform_stamped;
+    static_transform_stamped.header.stamp = this->get_clock()->now();
+    static_transform_stamped.header.frame_id = "map";
+    static_transform_stamped.child_frame_id = "odom";
+    static_transform_stamped.transform.translation.x = 1.0;
+    static_transform_stamped.transform.translation.y = 1.0;
+    static_transform_stamped.transform.translation.z = 0.0;  // 仮にz方向に0.1mのオフセット
+    static_transform_stamped.transform.rotation.x = 0.0;
+    static_transform_stamped.transform.rotation.y = 0.0;
+    static_transform_stamped.transform.rotation.z = 0.0;
+    static_transform_stamped.transform.rotation.w = 1.0;
+    static_broadcaster_->sendTransform(static_transform_stamped);
+  }
+
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub;
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub;  // パスを公開するためのパブリッシャー
   std::shared_ptr<tf2_ros::TransformBroadcaster> odom_broadcaster;
+  std::shared_ptr<tf2_ros::StaticTransformBroadcaster> static_broadcaster_;
   rclcpp::TimerBase::SharedPtr timer_;
   nav_msgs::msg::Path path;  // Pathメッセージのメンバ変数を追加
   double x, y, th, vx, vy, vth;

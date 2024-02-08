@@ -14,6 +14,7 @@ find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 # talker
 add_executable(talker src/publisher_member_function.cpp)
@@ -31,12 +32,17 @@ ament_target_dependencies(float32_pub rclcpp std_msgs)
 add_executable(odometry_pub src/odometry_pub.cpp)
 ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros)
 
+# laserscan_pub
+add_executable(laserscan_pub src/laserscan_pub.cpp)
+ament_target_dependencies(laserscan_pub rclcpp sensor_msgs tf2_ros geometry_msgs)
+
 # Install Cpp executables
 install(TARGETS
   talker
   listener
   float32_pub
   odometry_pub
+  laserscan_pub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
