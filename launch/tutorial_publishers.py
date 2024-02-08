@@ -45,12 +45,19 @@ def generate_launch_description():
         output="screen",
     )
 
+    laserscan_node = Node(
+        package=package_name,
+        executable='laserscan_pub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         minimal_publisher_node,
         minimal_subscriber_node,
         float32_node,
         odometry_node,
+        laserscan_node,
     ]
 
     return LaunchDescription(nodes)
