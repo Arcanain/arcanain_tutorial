@@ -51,6 +51,12 @@ def generate_launch_description():
         output="screen",
     )
 
+    twist_node = Node(
+        package=package_name,
+        executable='twist_pub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         minimal_publisher_node,
@@ -58,6 +64,7 @@ def generate_launch_description():
         float32_node,
         odometry_node,
         laserscan_node,
+        twist_node,
     ]
 
     return LaunchDescription(nodes)
