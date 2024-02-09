@@ -57,6 +57,12 @@ def generate_launch_description():
         output="screen",
     )
 
+    occupancy_grid_node = Node(
+        package=package_name,
+        executable='occupancy_grid_pub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         minimal_publisher_node,
@@ -65,6 +71,7 @@ def generate_launch_description():
         odometry_node,
         laserscan_node,
         twist_node,
+        occupancy_grid_node,
     ]
 
     return LaunchDescription(nodes)
