@@ -40,6 +40,9 @@ ament_target_dependencies(laserscan_pub rclcpp sensor_msgs tf2_ros geometry_msgs
 add_executable(twist_pub src/twist_pub.cpp)
 ament_target_dependencies(twist_pub rclcpp geometry_msgs)
 
+add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
+ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
+
 # Install Cpp executables
 install(TARGETS
   talker
@@ -48,6 +51,7 @@ install(TARGETS
   odometry_pub
   laserscan_pub
   twist_pub
+  occupancy_grid_pub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
