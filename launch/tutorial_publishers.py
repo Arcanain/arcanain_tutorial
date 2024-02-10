@@ -63,6 +63,12 @@ def generate_launch_description():
         output="screen",
     )
 
+    point_cloud_node = Node(
+        package=package_name,
+        executable='point_cloud_pub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         minimal_publisher_node,
@@ -72,6 +78,7 @@ def generate_launch_description():
         laserscan_node,
         twist_node,
         occupancy_grid_node,
+        point_cloud_node,
     ]
 
     return LaunchDescription(nodes)
