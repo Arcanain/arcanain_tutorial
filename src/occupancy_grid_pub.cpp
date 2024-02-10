@@ -35,7 +35,7 @@ private:
     occupancy_grid.info.origin.orientation.w = 1.0;
 
     // グリッドデータの設定 (例: 全てのセルを未知の状態(-1)に設定)
-    occupancy_grid.data.resize(occupancy_grid.info.width * occupancy_grid.info.height, -1);
+    occupancy_grid.data.resize(occupancy_grid.info.width * occupancy_grid.info.height, 1);
 
     publisher_->publish(occupancy_grid);
   }
