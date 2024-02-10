@@ -21,23 +21,30 @@ public:
 private:
   void publish_occupancy_grid()
   {
-    auto occupancy_grid = nav_msgs::msg::OccupancyGrid();
-    occupancy_grid.header.stamp = this->get_clock()->now();
-    occupancy_grid.header.frame_id = "map";
+    auto map = nav_msgs::msg::OccupancyGrid();
+    map.header.stamp = this->get_clock()->now();
+    map.header.frame_id = "map";
 
-    // グリッドマップのメタデータ設定
-    occupancy_grid.info.resolution = 0.1;     // グリッドの解像度 [m/cell]
-    occupancy_grid.info.width = 100;          // グリッドの幅 [cell]
-    occupancy_grid.info.height = 100;         // グリッドの高さ [cell]
-    occupancy_grid.info.origin.position.x = 0.0;
-    occupancy_grid.info.origin.position.y = 0.0;
-    occupancy_grid.info.origin.position.z = 0.0;
-    occupancy_grid.info.origin.orientation.w = 1.0;
+    // 地図のメタデータ設定
+    map.info.resolution = 0.1; // メートル/ピクセル
+    map.info.width = 100; // 10m x 10mの地図
+    map.info.height = 100;
+    map.info.origin.position.x = 0.0;
+    map.info.origin.position.y = 0.0;
+    map.info.origin.position.z = 0.0;
+    map.info.origin.orientation.w = 1.0;
 
-    // グリッドデータの設定 (例: 全てのセルを未知の状態(-1)に設定)
-    occupancy_grid.data.resize(occupancy_grid.info.width * occupancy_grid.info.height, 1);
+    // 地図データの初期化（すべてを未知(-1)に設定）
+    map.data = std::vector<int8_t>(map.info.width * map.info.height, -1);
 
-    publisher_->publish(occupancy_grid);
+    // 地図データに何らかの情報を埋める（ここでは簡単のためランダムに占有セルを設定）
+    for (size_t i = 0; i < map.data.size(); ++i) {
+      if (std::rand() % 10 < 3) {   // 約30%の確率で障害物を配置
+        map.data[i] = 100;
+      }
+    }
+
+    publisher_->publish(map);
   }
 
   rclcpp::Publisher<nav_msgs::msg::OccupancyGrid>::SharedPtr publisher_;
