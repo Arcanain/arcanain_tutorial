@@ -29,8 +29,8 @@ private:
     map.info.resolution = 0.1; // メートル/ピクセル
     map.info.width = 100; // 10m x 10mの地図
     map.info.height = 100;
-    map.info.origin.position.x = 0.0;
-    map.info.origin.position.y = 0.0;
+    map.info.origin.position.x = -5.0;
+    map.info.origin.position.y = -5.0;
     map.info.origin.position.z = 0.0;
     map.info.origin.orientation.w = 1.0;
 
