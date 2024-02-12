@@ -22,8 +22,11 @@ public:
       500ms, std::bind(&OccupancyGridPublisher::publish_occupancy_grid, this));
 
     // 障害物のデータをobstacles_に追加
-    obstacles_.push_back({2.0, 2.0, 0.5, 0.2});  // 1つ目の障害物
-    obstacles_.push_back({4.0, 4.0, 0.3, 0.1});  // 2つ目の障害物
+    obstacles_.push_back({2.0, 2.0, 0.5, 0.2});    // 1つ目の障害物
+    obstacles_.push_back({4.0, 4.0, 0.3, 0.1});    // 2つ目の障害物
+    obstacles_.push_back({4.0, -4.0, 0.8, 0.1});   // 3つ目の障害物
+    obstacles_.push_back({-4.0, 4.0, 0.1, 0.1});   // 4つ目の障害物
+    obstacles_.push_back({-1.0, -1.0, 0.1, 0.1});  // 5つ目の障害物
   }
 
 private:
