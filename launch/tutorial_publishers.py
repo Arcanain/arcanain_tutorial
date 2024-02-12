@@ -84,6 +84,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    single_obstacle_detector_node = Node(
+        package=package_name,
+        executable='single_obstacle_detector_pub',
+        output="screen",
+    )
+
+    multi_obstacle_detector_node = Node(
+        package=package_name,
+        executable='multi_obstacle_detector_pub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -95,6 +107,8 @@ def generate_launch_description():
         twist_node,
         occupancy_grid_node,
         point_cloud_node,
+        single_obstacle_detector_node,
+        multi_obstacle_detector_node,
     ]
 
     return LaunchDescription(nodes)
