@@ -69,8 +69,6 @@ def generate_launch_description():
         output="screen",
     )
 
-
-
     nodes = [
         rviz_node,
         minimal_publisher_node,

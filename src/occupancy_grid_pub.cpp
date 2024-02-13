@@ -1,5 +1,5 @@
-#include "rclcpp/rclcpp.hpp"
 #include "nav_msgs/msg/occupancy_grid.hpp"
+#include "rclcpp/rclcpp.hpp"
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
@@ -11,11 +11,8 @@ public:
   : Node("occupancy_grid_pub")
   {
     publisher_ = this->create_publisher<nav_msgs::msg::OccupancyGrid>("map", 10);
-    timer_ =
-      this->create_wall_timer(
-      500ms, std::bind(
-        &OccupancyGridPublisher::publish_occupancy_grid,
-        this));
+    timer_ = this->create_wall_timer(
+      500ms, std::bind(&OccupancyGridPublisher::publish_occupancy_grid, this));
   }
 
 private:
@@ -26,9 +23,9 @@ private:
     occupancy_grid.header.frame_id = "map";
 
     // グリッドマップのメタデータ設定
-    occupancy_grid.info.resolution = 0.1;     // グリッドの解像度 [m/cell]
-    occupancy_grid.info.width = 100;          // グリッドの幅 [cell]
-    occupancy_grid.info.height = 100;         // グリッドの高さ [cell]
+    occupancy_grid.info.resolution = 0.1;  // グリッドの解像度 [m/cell]
+    occupancy_grid.info.width = 100;       // グリッドの幅 [cell]
+    occupancy_grid.info.height = 100;      // グリッドの高さ [cell]
     occupancy_grid.info.origin.position.x = 0.0;
     occupancy_grid.info.origin.position.y = 0.0;
     occupancy_grid.info.origin.position.z = 0.0;
