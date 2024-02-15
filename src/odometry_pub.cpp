@@ -3,6 +3,7 @@
 #include "nav_msgs/msg/odometry.hpp"
 #include "nav_msgs/msg/path.hpp"  // Pathを使用するために追加
 #include "rclcpp/rclcpp.hpp"
+#include "sensor_msgs/msg/imu.hpp"
 #include "tf2/LinearMath/Quaternion.h"  // tf2::Quaternionを使用するために追加
 #include "tf2_geometry_msgs/tf2_geometry_msgs.hpp"
 #include "tf2_ros/static_transform_broadcaster.h"
@@ -14,9 +15,10 @@ class OdometryPublisher : public rclcpp::Node
 {
 public:
   OdometryPublisher()
-  : Node("odometry_pub")
+  : Node("odometry_pub_ver2")
   {
     odom_pub = this->create_publisher<nav_msgs::msg::Odometry>("odom", 50);
+    imu_pub = this->create_publisher<sensor_msgs::msg::Imu>("imu", 10);
     path_pub = this->create_publisher<nav_msgs::msg::Path>("odom_path", 50);
     odom_broadcaster = std::make_shared<tf2_ros::TransformBroadcaster>(*this);
 
@@ -94,6 +96,15 @@ private:
 
     odom_pub->publish(odom);
 
+    //publish imu
+    auto scan = sensor_msgs::msg::Imu();
+    scan.header.stamp = current_time;
+    scan.header.frame_id = "imu_frame";
+
+    scan.orientation = odom_quat_msg;
+
+    imu_pub->publish(scan);
+
     // パスに現在の位置を追加
     geometry_msgs::msg::PoseStamped this_pose_stamped;
     this_pose_stamped.pose.position.x = x;
@@ -126,6 +137,7 @@ private:
   }
 
   rclcpp::Publisher<nav_msgs::msg::Odometry>::SharedPtr odom_pub;
+  rclcpp::Publisher<sensor_msgs::msg::Imu>::SharedPtr imu_pub;
   rclcpp::Publisher<nav_msgs::msg::Path>::SharedPtr path_pub;  // パスを公開するためのパブリッシャー
   rclcpp::Subscription<geometry_msgs::msg::Twist>::SharedPtr cmd_vel_subscriber;
   std::shared_ptr<tf2_ros::TransformBroadcaster> odom_broadcaster;

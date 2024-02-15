@@ -31,7 +31,7 @@ ament_target_dependencies(float32_pub rclcpp std_msgs)
 
 # odometry_pub
 add_executable(odometry_pub src/odometry_pub.cpp)
-ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros)
+ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros sensor_msgs)
 
 # laserscan_pub
 add_executable(laserscan_pub src/laserscan_pub.cpp)
@@ -45,6 +45,10 @@ ament_target_dependencies(twist_pub rclcpp geometry_msgs)
 add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
 ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
 
+# imu_sub
+add_executable(Imu_sub src/imu_sub.cpp)
+ament_target_dependencies(Imu_sub rclcpp sensor_msgs tf2_ros geometry_msgs nav_msgs tf2_ros)
+
 # point_cloud_pub
 add_executable(point_cloud_pub src/point_cloud_pub.cpp)
 ament_target_dependencies(point_cloud_pub rclcpp sensor_msgs geometry_msgs tf2_ros geometry_msgs)
@@ -57,6 +61,7 @@ ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_
 add_executable(multi_obstacle_detector_pub src/multi_obstacle_detector_pub.cpp)
 ament_target_dependencies(multi_obstacle_detector_pub rclcpp nav_msgs visualization_msgs)
 
+
 # Install Cpp executables
 install(TARGETS
   talker
@@ -66,6 +71,7 @@ install(TARGETS
   laserscan_pub
   twist_pub
   occupancy_grid_pub
+  Imu_sub
   point_cloud_pub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub

@@ -36,6 +36,7 @@ private:
     map.header.stamp = this->get_clock()->now();
     map.header.frame_id = "map";
 
+
     // 地図のメタデータ設定
     map.info.resolution = 0.1;  // メートル/ピクセル
     map.info.width = 200;       // 20m x 20mの地図
