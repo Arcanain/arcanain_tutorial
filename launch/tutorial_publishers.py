@@ -96,6 +96,12 @@ def generate_launch_description():
         output="screen",
     )
 
+    imu_node = Node(
+        package=package_name,
+        executable='Imu_sub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -109,6 +115,7 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
+        imu_node,
     ]
 
     return LaunchDescription(nodes)

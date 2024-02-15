@@ -31,11 +31,7 @@ ament_target_dependencies(float32_pub rclcpp std_msgs)
 
 # odometry_pub
 add_executable(odometry_pub src/odometry_pub.cpp)
-ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros)
-
-# odometry_pub_ver2
-add_executable(odometry_pub_ver2 src/odometry_pub_ver2.cpp)
-ament_target_dependencies(odometry_pub_ver2 rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros sensor_msgs)
+ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros sensor_msgs)
 
 # laserscan_pub
 add_executable(laserscan_pub src/laserscan_pub.cpp)
@@ -72,7 +68,6 @@ install(TARGETS
   listener
   float32_pub
   odometry_pub
-  odometry_pub_ver2
   laserscan_pub
   twist_pub
   occupancy_grid_pub
