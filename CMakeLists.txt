@@ -15,6 +15,7 @@ find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(sensor_msgs REQUIRED)
+find_package(visualization_msgs REQUIRED)
 
 # talker
 add_executable(talker src/publisher_member_function.cpp)
@@ -52,6 +53,22 @@ ament_target_dependencies(my_publisher rclcpp std_msgs)
 add_executable(my_subscriber src/my_subscriber.cpp)
 ament_target_dependencies(my_subscriber rclcpp std_msgs)
 
+# occupancy_grid_pub
+add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
+ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
+
+# point_cloud_pub
+add_executable(point_cloud_pub src/point_cloud_pub.cpp)
+ament_target_dependencies(point_cloud_pub rclcpp sensor_msgs geometry_msgs tf2_ros geometry_msgs)
+
+# single_obstacle_detector_pub
+add_executable(single_obstacle_detector_pub src/single_obstacle_detector_pub.cpp)
+ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_msgs std_msgs visualization_msgs)
+
+# multi_obstacle_detector_pub
+add_executable(multi_obstacle_detector_pub src/multi_obstacle_detector_pub.cpp)
+ament_target_dependencies(multi_obstacle_detector_pub rclcpp nav_msgs visualization_msgs)
+
 # Install Cpp executables
 install(TARGETS
   talker
@@ -63,12 +80,17 @@ install(TARGETS
   std_msgs
   my_publisher
   my_subscriber
+  occupancy_grid_pub
+  point_cloud_pub
+  single_obstacle_detector_pub
+  multi_obstacle_detector_pub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
 install(DIRECTORY
   launch
   rviz
+  urdf
   DESTINATION share/${PROJECT_NAME}
 )
 
