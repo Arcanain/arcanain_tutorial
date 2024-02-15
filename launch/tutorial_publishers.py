@@ -57,6 +57,24 @@ def generate_launch_description():
         output="screen",
     )
 
+    std_msgs_node = Node(
+        package=package_name,
+        executable='std_msgs',
+        output="screen",
+    )
+
+    my_publisher_node = Node(
+        package=package_name,
+        executable='my_publisher',
+        output="screen",
+    )
+
+    my_subscriber_node = Node(
+        package=package_name,
+        executable='my_subscriber',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         minimal_publisher_node,
@@ -65,6 +83,9 @@ def generate_launch_description():
         odometry_node,
         laserscan_node,
         twist_node,
+        std_msgs_node,
+        my_subscriber_node,
+        my_publisher_node,
     ]
 
     return LaunchDescription(nodes)
