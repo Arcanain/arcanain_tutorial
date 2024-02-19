@@ -72,21 +72,15 @@ def generate_launch_description():
         output="screen",
     )
 
-    std_msgs_node = Node(
+    uint8_pub_node = Node(
         package=package_name,
-        executable='std_msgs',
+        executable='uint8_pub',
         output="screen",
     )
 
-    my_publisher_node = Node(
+    uint8_sub_node = Node(
         package=package_name,
-        executable='my_publisher',
-        output="screen",
-    )
-
-    my_subscriber_node = Node(
-        package=package_name,
-        executable='my_subscriber',
+        executable='uint8_sub',
     )
 
     occupancy_grid_node = Node(
@@ -122,9 +116,8 @@ def generate_launch_description():
         odometry_node,
         laserscan_node,
         twist_node,
-        std_msgs_node,
-        my_subscriber_node,
-        my_publisher_node,
+        uint8_sub_node,
+        uint8_pub_node,
         occupancy_grid_node,
         point_cloud_node,
         single_obstacle_detector_node,
