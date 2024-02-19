@@ -127,6 +127,7 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
+        imu_pub_node,
         int32_array_pub_node,
         int32_array_sub_node,
     ]
