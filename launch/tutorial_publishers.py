@@ -72,6 +72,17 @@ def generate_launch_description():
         output="screen",
     )
 
+    uint8_pub_node = Node(
+        package=package_name,
+        executable='uint8_pub',
+        output="screen",
+    )
+
+    uint8_sub_node = Node(
+        package=package_name,
+        executable='uint8_sub',
+    )
+
     occupancy_grid_node = Node(
         package=package_name,
         executable='occupancy_grid_pub',
@@ -123,6 +134,8 @@ def generate_launch_description():
         odometry_node,
         laserscan_node,
         twist_node,
+        uint8_sub_node,
+        uint8_pub_node,
         occupancy_grid_node,
         point_cloud_node,
         single_obstacle_detector_node,
