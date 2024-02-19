@@ -7,9 +7,9 @@ class Int32MultiArrayPublisher : public rclcpp::Node
 {
 public:
   Int32MultiArrayPublisher()
-  : Node("publisher_nkn")
+  : Node("int32_array_pub")
   {
-    publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("topic", 10);
+    publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("int32_array_data", 10);
     timer_ = this->create_wall_timer(
       1000ms, std::bind(&Int32MultiArrayPublisher::timer_callback, this));
   }
@@ -23,7 +23,7 @@ private:
     for (int value : message.data) {
       ss << value << " ";
     }
-    RCLCPP_INFO(this->get_logger(), "Publishing: '%s'", ss.str().c_str());
+    RCLCPP_INFO(this->get_logger(), "Publishing: %s", ss.str().c_str());
     publisher_->publish(message);
   }
   rclcpp::TimerBase::SharedPtr timer_;

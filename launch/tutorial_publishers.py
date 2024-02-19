@@ -102,6 +102,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    int32_array_pub_node = Node(
+        package=package_name,
+        executable='int32_array_pub',
+        output="screen",
+    )
+
+    int32_array_sub_node = Node(
+        package=package_name,
+        executable='int32_array_sub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -116,6 +128,8 @@ def generate_launch_description():
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
         imu_node,
+        int32_array_pub_node,
+        int32_array_sub_node,
     ]
 
     return LaunchDescription(nodes)

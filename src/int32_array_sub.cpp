@@ -5,10 +5,10 @@ class Int32MultiArraySubscriber : public rclcpp::Node
 {
 public:
   Int32MultiArraySubscriber()
-  : Node("subscriber_nkn")
+  : Node("int32_array_sub")
   {
     subscription_ = this->create_subscription<std_msgs::msg::Int32MultiArray>(
-      "topic", 10, std::bind(
+      "int32_array_data", 10, std::bind(
         &Int32MultiArraySubscriber::topic_callback, this,
         std::placeholders::_1));
   }
@@ -22,7 +22,7 @@ private:
       ss << value << " ";
     }
 
-    RCLCPP_INFO(this->get_logger(), "I heard: '%s'", ss.str().c_str());
+    RCLCPP_INFO(this->get_logger(), "I heard: %s", ss.str().c_str());
   }
   rclcpp::Subscription<std_msgs::msg::Int32MultiArray>::SharedPtr subscription_;
 };

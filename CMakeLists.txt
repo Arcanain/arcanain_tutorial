@@ -61,17 +61,18 @@ ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_
 add_executable(multi_obstacle_detector_pub src/multi_obstacle_detector_pub.cpp)
 ament_target_dependencies(multi_obstacle_detector_pub rclcpp nav_msgs visualization_msgs)
 
-#nakano additional
-add_executable(publisher_nkn src/publisher_nkn.cpp)
-ament_target_dependencies(publisher_nkn rclcpp std_msgs)
+# int32_array_pub
+add_executable(int32_array_pub src/int32_array_pub.cpp)
+ament_target_dependencies(int32_array_pub rclcpp std_msgs)
 
-add_executable(subscriber_nkn src/subscriber_nkn.cpp)
-ament_target_dependencies(subscriber_nkn rclcpp std_msgs)
+# int32_array_sub
+add_executable(int32_array_sub src/int32_array_sub.cpp)
+ament_target_dependencies(int32_array_sub rclcpp std_msgs)
 
 # Install Cpp executables
 install(TARGETS
-  publisher_nkn
-  subscriber_nkn
+  int32_array_pub
+  int32_array_sub
   talker
   listener
   float32_pub
