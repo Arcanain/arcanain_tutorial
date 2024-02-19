@@ -45,9 +45,9 @@ ament_target_dependencies(twist_pub rclcpp geometry_msgs)
 add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
 ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
 
-# imu_sub
-add_executable(Imu_sub src/imu_sub.cpp)
-ament_target_dependencies(Imu_sub rclcpp sensor_msgs tf2_ros geometry_msgs nav_msgs tf2_ros)
+# imu_pub
+add_executable(imu_pub src/imu_pub.cpp)
+ament_target_dependencies(imu_pub rclcpp sensor_msgs tf2_ros geometry_msgs nav_msgs tf2_ros)
 
 # point_cloud_pub
 add_executable(point_cloud_pub src/point_cloud_pub.cpp)
@@ -80,7 +80,7 @@ install(TARGETS
   laserscan_pub
   twist_pub
   occupancy_grid_pub
-  Imu_sub
+  imu_pub
   point_cloud_pub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub
