@@ -96,9 +96,9 @@ def generate_launch_description():
         output="screen",
     )
 
-    imu_node = Node(
+    imu_pub_node = Node(
         package=package_name,
-        executable='Imu_sub',
+        executable='imu_pub',
         output="screen",
     )
 
@@ -115,7 +115,7 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
-        imu_node,
+        imu_pub_node,
     ]
 
     return LaunchDescription(nodes)
