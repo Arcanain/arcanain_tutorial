@@ -55,7 +55,6 @@
     <axis xyz="0 0 1"/>
   </joint>
 
-
   <link name="right_front_wheel_link">
     <visual>
       <geometry>
@@ -67,14 +66,13 @@
       </material>
     </visual>
   </link>
- 
+
   <joint name="right_front_wheel_joint" type="fixed">
     <parent link="base_link"/>
     <child link="right_front_wheel_link"/>
     <origin rpy="1.5707 0 0" xyz="0.128 -0.105 0.034"/>
     <axis xyz="0 0 1"/>
   </joint>
-
 
   <link name="right_rear_wheel_link">
     <visual>

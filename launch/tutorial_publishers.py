@@ -36,6 +36,14 @@ def generate_launch_description():
         parameters=[{'robot_description': robot_description}]
     )
 
+    joint_state_publisher_rviz_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        output='both',
+        parameters=[{'joint_state_publisher': robot_description}]
+    )
+
     minimal_publisher_node = Node(
         package=package_name,
         executable='talker',
@@ -128,6 +136,7 @@ def generate_launch_description():
     nodes = [
         rviz_node,
         robot_description_rviz_node,
+        joint_state_publisher_rviz_node,
         minimal_publisher_node,
         minimal_subscriber_node,
         float32_node,
