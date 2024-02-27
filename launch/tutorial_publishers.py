@@ -124,6 +124,8 @@ def generate_launch_description():
     ColorRGBA_sub_node = Node(
         package=package_name,
         executable='ColorRGBA_sub',
+        output="screen",
+    )
 
     imu_pub_node = Node(
         package=package_name,

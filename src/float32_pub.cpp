@@ -6,8 +6,7 @@
 #include "rclcpp/rclcpp.hpp"
 #include "std_msgs/msg/float32.hpp"
 
-class Float32PubComponent
-  : public rclcpp::Node
+class Float32PubComponent : public rclcpp::Node
 {
 public:
   Float32PubComponent()
