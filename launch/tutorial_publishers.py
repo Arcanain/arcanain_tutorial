@@ -11,7 +11,7 @@ def generate_launch_description():
     package_name = 'arcanain_tutorial'
     rviz_file_name = "arcanain_tutorial.rviz"
 
-    file_path = os.path.expanduser('~/ros2_ws/src/arcanain_tutorial/urdf/robot_model.urdf.xml')
+    file_path = os.path.expanduser('~/ros2_ws/src/arcanain_tutorial/urdf/sam_bot_description.urdf')
 
     with open(file_path, 'r') as file:
         robot_description = file.read()
