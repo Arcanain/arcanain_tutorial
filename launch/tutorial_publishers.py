@@ -113,6 +113,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    ColorRGBA_pub_node = Node(
+        package=package_name,
+        executable='ColorRGBA_pub',
+        output="screen",
+    )
+
+    ColorRGBA_sub_node = Node(
+        package=package_name,
+        executable='ColorRGBA_sub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -129,6 +141,8 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
+        ColorRGBA_pub_node,
+        ColorRGBA_sub_node,
     ]
 
     return LaunchDescription(nodes)
