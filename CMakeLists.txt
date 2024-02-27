@@ -31,7 +31,7 @@ ament_target_dependencies(float32_pub rclcpp std_msgs)
 
 # odometry_pub
 add_executable(odometry_pub src/odometry_pub.cpp)
-ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros)
+ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros sensor_msgs)
 
 # laserscan_pub
 add_executable(laserscan_pub src/laserscan_pub.cpp)
@@ -41,21 +41,21 @@ ament_target_dependencies(laserscan_pub rclcpp sensor_msgs tf2_ros geometry_msgs
 add_executable(twist_pub src/twist_pub.cpp)
 ament_target_dependencies(twist_pub rclcpp geometry_msgs)
 
-# std_msgs
-add_executable(std_msgs src/std_msgs.cpp)
-ament_target_dependencies(std_msgs rclcpp std_msgs)
+# uint8_pub
+add_executable(uint8_pub src/uint8_pub.cpp)
+ament_target_dependencies(uint8_pub rclcpp std_msgs)
 
-# my_publisher
-add_executable(my_publisher src/my_publisher.cpp)
-ament_target_dependencies(my_publisher rclcpp std_msgs)
-
-# my_subscriber
-add_executable(my_subscriber src/my_subscriber.cpp)
-ament_target_dependencies(my_subscriber rclcpp std_msgs)
+# uint8_sub
+add_executable(uint8_sub src/uint8_sub.cpp)
+ament_target_dependencies(uint8_sub rclcpp std_msgs)
 
 # occupancy_grid_pub
 add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
 ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
+
+# imu_pub
+add_executable(imu_pub src/imu_pub.cpp)
+ament_target_dependencies(imu_pub rclcpp sensor_msgs tf2_ros geometry_msgs nav_msgs tf2_ros)
 
 # point_cloud_pub
 add_executable(point_cloud_pub src/point_cloud_pub.cpp)
@@ -77,18 +77,28 @@ ament_target_dependencies(ColorRGBA_pub rclcpp std_msgs)
 add_executable(ColorRGBA_sub src/ColorRGBA_sub.cpp)
 ament_target_dependencies(ColorRGBA_sub rclcpp std_msgs)
 
+# int32_array_pub
+add_executable(int32_array_pub src/int32_array_pub.cpp)
+ament_target_dependencies(int32_array_pub rclcpp std_msgs)
+
+# int32_array_sub
+add_executable(int32_array_sub src/int32_array_sub.cpp)
+ament_target_dependencies(int32_array_sub rclcpp std_msgs)
+
 # Install Cpp executables
 install(TARGETS
+  int32_array_pub
+  int32_array_sub
   talker
   listener
   float32_pub
   odometry_pub
   laserscan_pub
   twist_pub
-  std_msgs
-  my_publisher
-  my_subscriber
+  uint8_pub
+  uint8_sub
   occupancy_grid_pub
+  imu_pub
   point_cloud_pub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub
