@@ -115,6 +115,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    ColorRGBA_pub_node = Node(
+        package=package_name,
+        executable='ColorRGBA_pub',
+        output="screen",
+    )
+
+    ColorRGBA_sub_node = Node(
+        package=package_name,
+        executable='ColorRGBA_sub',
+        output="screen",
+    )
+
     imu_pub_node = Node(
         package=package_name,
         executable='imu_pub',
@@ -130,6 +142,7 @@ def generate_launch_description():
     int32_array_sub_node = Node(
         package=package_name,
         executable='int32_array_sub',
+
         output="screen",
     )
 
@@ -149,6 +162,8 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
+        ColorRGBA_pub_node,
+        ColorRGBA_sub_node,
         imu_pub_node,
         int32_array_pub_node,
         int32_array_sub_node,

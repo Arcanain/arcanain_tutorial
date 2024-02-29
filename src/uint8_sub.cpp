@@ -8,8 +8,7 @@ public:
   : Node("uint8_subscriber")
   {
     subscription_ = this->create_subscription<std_msgs::msg::UInt8>(
-      "uint8_topic", 10,
-      std::bind(&UInt8Subscriber::topic_callback, this, std::placeholders::_1));
+      "uint8_topic", 10, std::bind(&UInt8Subscriber::topic_callback, this, std::placeholders::_1));
   }
 
 private:

@@ -10,8 +10,8 @@ public:
   : Node("int32_array_pub")
   {
     publisher_ = this->create_publisher<std_msgs::msg::Int32MultiArray>("int32_array_data", 10);
-    timer_ = this->create_wall_timer(
-      1000ms, std::bind(&Int32MultiArrayPublisher::timer_callback, this));
+    timer_ =
+      this->create_wall_timer(1000ms, std::bind(&Int32MultiArrayPublisher::timer_callback, this));
   }
 
 private:

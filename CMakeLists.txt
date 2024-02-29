@@ -69,6 +69,14 @@ ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_
 add_executable(multi_obstacle_detector_pub src/multi_obstacle_detector_pub.cpp)
 ament_target_dependencies(multi_obstacle_detector_pub rclcpp nav_msgs visualization_msgs)
 
+# ColorRGBA_pub
+add_executable(ColorRGBA_pub src/ColorRGBA_pub.cpp)
+ament_target_dependencies(ColorRGBA_pub rclcpp std_msgs)
+
+# ColorRGBA_sub
+add_executable(ColorRGBA_sub src/ColorRGBA_sub.cpp)
+ament_target_dependencies(ColorRGBA_sub rclcpp std_msgs)
+
 # int32_array_pub
 add_executable(int32_array_pub src/int32_array_pub.cpp)
 ament_target_dependencies(int32_array_pub rclcpp std_msgs)
@@ -94,6 +102,8 @@ install(TARGETS
   point_cloud_pub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub
+  ColorRGBA_pub
+  ColorRGBA_sub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files

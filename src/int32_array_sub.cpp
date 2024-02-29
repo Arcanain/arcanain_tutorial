@@ -8,9 +8,8 @@ public:
   : Node("int32_array_sub")
   {
     subscription_ = this->create_subscription<std_msgs::msg::Int32MultiArray>(
-      "int32_array_data", 10, std::bind(
-        &Int32MultiArraySubscriber::topic_callback, this,
-        std::placeholders::_1));
+      "int32_array_data", 10,
+      std::bind(&Int32MultiArraySubscriber::topic_callback, this, std::placeholders::_1));
   }
 
 private:

@@ -10,8 +10,7 @@ public:
   : Node("uint8_publisher")
   {
     publisher_ = this->create_publisher<std_msgs::msg::UInt8>("uint8_topic", 10);
-    timer_ = this->create_wall_timer(
-      1s, std::bind(&UInt8Publisher::publish_message, this));
+    timer_ = this->create_wall_timer(1s, std::bind(&UInt8Publisher::publish_message, this));
   }
 
 private:
