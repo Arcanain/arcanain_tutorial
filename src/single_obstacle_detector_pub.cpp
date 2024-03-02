@@ -10,7 +10,8 @@
 class ObstacleDetector : public rclcpp::Node
 {
 public:
-  ObstacleDetector() : Node("single_obstacle_detector_pub")
+  ObstacleDetector()
+  : Node("single_obstacle_detector_pub")
   {
     obstacle_position_publisher_ =
       this->create_publisher<geometry_msgs::msg::PointStamped>("obstacle_position", 10);

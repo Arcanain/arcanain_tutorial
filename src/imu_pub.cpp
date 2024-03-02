@@ -11,7 +11,8 @@ using namespace std::chrono_literals;
 class ImuPublisher : public rclcpp::Node
 {
 public:
-  ImuPublisher() : Node("imu_pub")
+  ImuPublisher()
+  : Node("imu_pub")
   {
     timer_ = this->create_wall_timer(500ms, std::bind(&ImuPublisher::publish_imu_data, this));
 

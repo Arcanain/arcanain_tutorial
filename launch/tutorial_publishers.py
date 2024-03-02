@@ -128,8 +128,8 @@ def generate_launch_description():
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
         imu_pub_node,
-        monte_carlo_pi_pub,
-        monte_carlo_pi_sub,
+        monte_carlo_pi_pub_node,
+        monte_carlo_pi_sub_node,
     ]
 
     return LaunchDescription(nodes)

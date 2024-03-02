@@ -4,7 +4,8 @@
 class PiSubscriber : public rclcpp::Node
 {
 public:
-  PiSubscriber() : Node("monte_carlo_pi_sub")
+  PiSubscriber()
+  : Node("monte_carlo_pi_sub")
   {
     subscription_ = this->create_subscription<std_msgs::msg::Float64>(
       "monte_carlo_pi", 10, std::bind(&PiSubscriber::piCallback, this, std::placeholders::_1));

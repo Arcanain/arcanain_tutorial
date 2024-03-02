@@ -11,7 +11,8 @@ using std::placeholders::_1;
 class PiPublisher : public rclcpp::Node
 {
 public:
-  PiPublisher() : Node("monte_carlo_pi_pub")
+  PiPublisher()
+  : Node("monte_carlo_pi_pub")
   {
     publisher_ = this->create_publisher<std_msgs::msg::Float64>("monte_carlo_pi", 10);
     timer_ = this->create_wall_timer(1000ms, std::bind(&PiPublisher::publishPiApproximation, this));
