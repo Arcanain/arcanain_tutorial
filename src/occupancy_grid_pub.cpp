@@ -14,8 +14,7 @@ struct Obstacle
 class OccupancyGridPublisher : public rclcpp::Node
 {
 public:
-  OccupancyGridPublisher()
-  : Node("occupancy_grid_pub")
+  OccupancyGridPublisher() : Node("occupancy_grid_pub")
   {
     publisher_ = this->create_publisher<nav_msgs::msg::OccupancyGrid>("map", 10);
     timer_ = this->create_wall_timer(
@@ -59,14 +58,14 @@ private:
       // 障害物の領域を決定
       int min_x = std::max(
         0, static_cast<int>(
-          (obstacle_x - obstacle_radius - map.info.origin.position.x) / map.info.resolution));
+             (obstacle_x - obstacle_radius - map.info.origin.position.x) / map.info.resolution));
       int max_x = std::min(
         static_cast<int>(map.info.width - 1),
         static_cast<int>(
           (obstacle_x + obstacle_radius - map.info.origin.position.x) / map.info.resolution));
       int min_y = std::max(
         0, static_cast<int>(
-          (obstacle_y - obstacle_radius - map.info.origin.position.y) / map.info.resolution));
+             (obstacle_y - obstacle_radius - map.info.origin.position.y) / map.info.resolution));
       int max_y = std::min(
         static_cast<int>(map.info.height - 1),
         static_cast<int>(

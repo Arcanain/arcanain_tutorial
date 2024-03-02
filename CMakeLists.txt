@@ -64,10 +64,25 @@ ament_target_dependencies(publisher_nkn rclcpp std_msgs)
 add_executable(subscriber_nkn src/subscriber_nkn.cpp)
 ament_target_dependencies(subscriber_nkn rclcpp std_msgs)
 
+# monte_carlo_pi_pub
+add_executable(monte_carlo_pi_pub src/monte_carlo_pi_pub.cpp)
+ament_target_dependencies(monte_carlo_pi_pub rclcpp std_msgs)
+
+# monte_carlo_pi_sub
+add_executable(monte_carlo_pi_sub src/monte_carlo_pi_sub.cpp)
+ament_target_dependencies(monte_carlo_pi_sub rclcpp std_msgs)
+
 # Install Cpp executables
 install(TARGETS
+<<<<<<< HEAD
   publisher_nkn
   subscriber_nkn
+=======
+  monte_carlo_pi_pub
+  monte_carlo_pi_sub
+  int32_array_pub
+  int32_array_sub
+>>>>>>> 865d87b (Temporary commit)
   talker
   listener
   float32_pub

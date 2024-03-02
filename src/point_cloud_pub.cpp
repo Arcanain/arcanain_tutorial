@@ -9,8 +9,7 @@ using namespace std::chrono_literals;
 class PointCloudPublisher : public rclcpp::Node
 {
 public:
-  PointCloudPublisher()
-  : Node("point_cloud_pub")
+  PointCloudPublisher() : Node("point_cloud_pub")
   {
     publisher_ = this->create_publisher<sensor_msgs::msg::PointCloud>("point_cloud", 10);
     timer_ =

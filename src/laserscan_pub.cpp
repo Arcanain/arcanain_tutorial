@@ -8,8 +8,7 @@ using namespace std::chrono_literals;
 class LaserScanPublisher : public rclcpp::Node
 {
 public:
-  LaserScanPublisher()
-  : Node("laserscan_pub")
+  LaserScanPublisher() : Node("laserscan_pub")
   {
     scan_pub = this->create_publisher<sensor_msgs::msg::LaserScan>("scan", 50);
     timer_ = this->create_wall_timer(1s, std::bind(&LaserScanPublisher::publish_scan, this));

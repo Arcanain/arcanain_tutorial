@@ -9,8 +9,7 @@
 class ObstacleClusterDetector : public rclcpp::Node
 {
 public:
-  ObstacleClusterDetector()
-  : Node("multi_obstacle_detector_pub")
+  ObstacleClusterDetector() : Node("multi_obstacle_detector_pub")
   {
     marker_publisher_ =
       this->create_publisher<visualization_msgs::msg::MarkerArray>("obstacle_markers", 10);
@@ -108,8 +107,7 @@ private:
               // マップの範囲内かつ未訪問で閾値以上のセルをクラスタに追加
               if (
                 nx >= 0 && nx < map->info.width && ny >= 0 && ny < map->info.height &&
-                !visited[ny][nx] && map->data[nx + ny * map->info.width] > threshold)
-              {
+                !visited[ny][nx] && map->data[nx + ny * map->info.width] > threshold) {
                 q.push({nx, ny});
                 visited[ny][nx] = true;
               }

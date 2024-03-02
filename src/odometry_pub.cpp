@@ -13,8 +13,7 @@ using namespace std::chrono_literals;
 class OdometryPublisher : public rclcpp::Node
 {
 public:
-  OdometryPublisher()
-  : Node("odometry_pub")
+  OdometryPublisher() : Node("odometry_pub")
   {
     odom_pub = this->create_publisher<nav_msgs::msg::Odometry>("odom", 50);
     path_pub = this->create_publisher<nav_msgs::msg::Path>("odom_path", 50);

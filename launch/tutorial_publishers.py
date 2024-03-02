@@ -96,6 +96,39 @@ def generate_launch_description():
         output="screen",
     )
 
+<<<<<<< HEAD
+=======
+    imu_pub_node = Node(
+        package=package_name,
+        executable='imu_pub',
+        output="screen",
+    )
+
+    int32_array_pub_node = Node(
+        package=package_name,
+        executable='int32_array_pub',
+        output="screen",
+    )
+
+    int32_array_sub_node = Node(
+        package=package_name,
+        executable='int32_array_sub',
+        output="screen",
+    )
+
+    monte_carlo_pi_pub_node = Node(
+        package=package_name,
+        executable='monte_carlo_pi_pub',
+        output="screen",
+    )
+
+    monte_carlo_pi_sub_node = Node(
+        package=package_name,
+        executable='monte_carlo_pi_sub',
+        output="screen",
+    )
+
+>>>>>>> 865d87b (Temporary commit)
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -109,6 +142,14 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
+<<<<<<< HEAD
+=======
+        imu_pub_node,
+        int32_array_pub_node,
+        int32_array_sub_node,
+        monte_carlo_pi_pub,
+        monte_carlo_pi_sub,
+>>>>>>> 865d87b (Temporary commit)
     ]
 
     return LaunchDescription(nodes)

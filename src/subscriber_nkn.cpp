@@ -4,6 +4,7 @@
 class Int32MultiArraySubscriber : public rclcpp::Node
 {
 public:
+<<<<<<< HEAD:src/subscriber_nkn.cpp
   Int32MultiArraySubscriber()
   : Node("subscriber_nkn")
   {
@@ -11,6 +12,13 @@ public:
       "topic", 10, std::bind(
         &Int32MultiArraySubscriber::topic_callback, this,
         std::placeholders::_1));
+=======
+  Int32MultiArraySubscriber() : Node("int32_array_sub")
+  {
+    subscription_ = this->create_subscription<std_msgs::msg::Int32MultiArray>(
+      "int32_array_data", 10,
+      std::bind(&Int32MultiArraySubscriber::topic_callback, this, std::placeholders::_1));
+>>>>>>> 865d87b (Temporary commit):src/int32_array_sub.cpp
   }
 
 private:
