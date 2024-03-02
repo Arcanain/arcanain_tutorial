@@ -31,7 +31,7 @@ ament_target_dependencies(float32_pub rclcpp std_msgs)
 
 # odometry_pub
 add_executable(odometry_pub src/odometry_pub.cpp)
-ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros)
+ament_target_dependencies(odometry_pub rclcpp tf2_geometry_msgs nav_msgs geometry_msgs tf2_ros sensor_msgs)
 
 # laserscan_pub
 add_executable(laserscan_pub src/laserscan_pub.cpp)
@@ -45,6 +45,10 @@ ament_target_dependencies(twist_pub rclcpp geometry_msgs)
 add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
 ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
 
+# imu_pub
+add_executable(imu_pub src/imu_pub.cpp)
+ament_target_dependencies(imu_pub rclcpp sensor_msgs tf2_ros geometry_msgs nav_msgs tf2_ros)
+
 # point_cloud_pub
 add_executable(point_cloud_pub src/point_cloud_pub.cpp)
 ament_target_dependencies(point_cloud_pub rclcpp sensor_msgs geometry_msgs tf2_ros geometry_msgs)
@@ -57,13 +61,6 @@ ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_
 add_executable(multi_obstacle_detector_pub src/multi_obstacle_detector_pub.cpp)
 ament_target_dependencies(multi_obstacle_detector_pub rclcpp nav_msgs visualization_msgs)
 
-#nakano additional
-add_executable(publisher_nkn src/publisher_nkn.cpp)
-ament_target_dependencies(publisher_nkn rclcpp std_msgs)
-
-add_executable(subscriber_nkn src/subscriber_nkn.cpp)
-ament_target_dependencies(subscriber_nkn rclcpp std_msgs)
-
 # monte_carlo_pi_pub
 add_executable(monte_carlo_pi_pub src/monte_carlo_pi_pub.cpp)
 ament_target_dependencies(monte_carlo_pi_pub rclcpp std_msgs)
@@ -74,15 +71,8 @@ ament_target_dependencies(monte_carlo_pi_sub rclcpp std_msgs)
 
 # Install Cpp executables
 install(TARGETS
-<<<<<<< HEAD
-  publisher_nkn
-  subscriber_nkn
-=======
   monte_carlo_pi_pub
   monte_carlo_pi_sub
-  int32_array_pub
-  int32_array_sub
->>>>>>> 865d87b (Temporary commit)
   talker
   listener
   float32_pub
@@ -90,6 +80,7 @@ install(TARGETS
   laserscan_pub
   twist_pub
   occupancy_grid_pub
+  imu_pub
   point_cloud_pub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub
