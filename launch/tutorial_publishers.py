@@ -133,6 +133,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    monte_carlo_pi_pub_node = Node(
+        package=package_name,
+        executable='monte_carlo_pi_pub',
+        output="screen",
+    )
+
+    monte_carlo_pi_sub_node = Node(
+        package=package_name,
+        executable='monte_carlo_pi_sub',
+        output="screen",
+    )
+
     int32_array_pub_node = Node(
         package=package_name,
         executable='int32_array_pub',
@@ -142,7 +154,6 @@ def generate_launch_description():
     int32_array_sub_node = Node(
         package=package_name,
         executable='int32_array_sub',
-
         output="screen",
     )
 
@@ -162,9 +173,11 @@ def generate_launch_description():
         point_cloud_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
+        imu_pub_node,
+        monte_carlo_pi_pub_node,
+        monte_carlo_pi_sub_node,
         ColorRGBA_pub_node,
         ColorRGBA_sub_node,
-        imu_pub_node,
         int32_array_pub_node,
         int32_array_sub_node,
     ]

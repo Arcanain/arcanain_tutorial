@@ -69,6 +69,14 @@ ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_
 add_executable(multi_obstacle_detector_pub src/multi_obstacle_detector_pub.cpp)
 ament_target_dependencies(multi_obstacle_detector_pub rclcpp nav_msgs visualization_msgs)
 
+# monte_carlo_pi_pub
+add_executable(monte_carlo_pi_pub src/monte_carlo_pi_pub.cpp)
+ament_target_dependencies(monte_carlo_pi_pub rclcpp std_msgs)
+
+# monte_carlo_pi_sub
+add_executable(monte_carlo_pi_sub src/monte_carlo_pi_sub.cpp)
+ament_target_dependencies(monte_carlo_pi_sub rclcpp std_msgs)
+
 # ColorRGBA_pub
 add_executable(ColorRGBA_pub src/ColorRGBA_pub.cpp)
 ament_target_dependencies(ColorRGBA_pub rclcpp std_msgs)
@@ -104,6 +112,8 @@ install(TARGETS
   multi_obstacle_detector_pub
   ColorRGBA_pub
   ColorRGBA_sub
+  monte_carlo_pi_pub
+  monte_carlo_pi_sub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
