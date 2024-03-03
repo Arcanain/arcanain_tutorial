@@ -11,7 +11,7 @@ def generate_launch_description():
     package_name = 'arcanain_tutorial'
     rviz_file_name = "arcanain_tutorial.rviz"
 
-    file_path = os.path.expanduser('~/ros2_ws/src/arcanain_tutorial/urdf/robot_model.urdf.xml')
+    file_path = os.path.expanduser('~/ros2_ws/src/arcanain_tutorial/urdf/sam_bot_description.urdf')
 
     with open(file_path, 'r') as file:
         robot_description = file.read()
@@ -34,6 +34,14 @@ def generate_launch_description():
         name='robot_state_publisher',
         output='both',
         parameters=[{'robot_description': robot_description}]
+    )
+
+    joint_state_publisher_rviz_node = Node(
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
+        name='joint_state_publisher',
+        output='both',
+        parameters=[{'joint_state_publisher': robot_description}]
     )
 
     minimal_publisher_node = Node(
@@ -72,6 +80,17 @@ def generate_launch_description():
         output="screen",
     )
 
+    uint8_pub_node = Node(
+        package=package_name,
+        executable='uint8_pub',
+        output="screen",
+    )
+
+    uint8_sub_node = Node(
+        package=package_name,
+        executable='uint8_sub',
+    )
+
     occupancy_grid_node = Node(
         package=package_name,
         executable='occupancy_grid_pub',
@@ -96,6 +115,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    ColorRGBA_pub_node = Node(
+        package=package_name,
+        executable='ColorRGBA_pub',
+        output="screen",
+    )
+
+    ColorRGBA_sub_node = Node(
+        package=package_name,
+        executable='ColorRGBA_sub',
+        output="screen",
+    )
+
     imu_pub_node = Node(
         package=package_name,
         executable='imu_pub',
@@ -114,15 +145,30 @@ def generate_launch_description():
         output="screen",
     )
 
+    int32_array_pub_node = Node(
+        package=package_name,
+        executable='int32_array_pub',
+        output="screen",
+    )
+
+    int32_array_sub_node = Node(
+        package=package_name,
+        executable='int32_array_sub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
+        joint_state_publisher_rviz_node,
         minimal_publisher_node,
         minimal_subscriber_node,
         float32_node,
         odometry_node,
         laserscan_node,
         twist_node,
+        uint8_sub_node,
+        uint8_pub_node,
         occupancy_grid_node,
         point_cloud_node,
         single_obstacle_detector_node,
@@ -130,6 +176,10 @@ def generate_launch_description():
         imu_pub_node,
         monte_carlo_pi_pub_node,
         monte_carlo_pi_sub_node,
+        ColorRGBA_pub_node,
+        ColorRGBA_sub_node,
+        int32_array_pub_node,
+        int32_array_sub_node,
     ]
 
     return LaunchDescription(nodes)

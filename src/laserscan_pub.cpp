@@ -12,7 +12,7 @@ public:
   : Node("laserscan_pub")
   {
     scan_pub = this->create_publisher<sensor_msgs::msg::LaserScan>("scan", 50);
-    timer_ = this->create_wall_timer(1s, std::bind(&LaserScanPublisher::publish_scan, this));
+    timer_ = this->create_wall_timer(500ms, std::bind(&LaserScanPublisher::publish_scan, this));
     // 静的な変換を送信するタイマー
     static_broadcaster_ = std::make_shared<tf2_ros::StaticTransformBroadcaster>(this);
     send_static_transform();

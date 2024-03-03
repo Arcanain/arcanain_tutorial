@@ -41,6 +41,14 @@ ament_target_dependencies(laserscan_pub rclcpp sensor_msgs tf2_ros geometry_msgs
 add_executable(twist_pub src/twist_pub.cpp)
 ament_target_dependencies(twist_pub rclcpp geometry_msgs)
 
+# uint8_pub
+add_executable(uint8_pub src/uint8_pub.cpp)
+ament_target_dependencies(uint8_pub rclcpp std_msgs)
+
+# uint8_sub
+add_executable(uint8_sub src/uint8_sub.cpp)
+ament_target_dependencies(uint8_sub rclcpp std_msgs)
+
 # occupancy_grid_pub
 add_executable(occupancy_grid_pub src/occupancy_grid_pub.cpp)
 ament_target_dependencies(occupancy_grid_pub rclcpp nav_msgs)
@@ -69,21 +77,43 @@ ament_target_dependencies(monte_carlo_pi_pub rclcpp std_msgs)
 add_executable(monte_carlo_pi_sub src/monte_carlo_pi_sub.cpp)
 ament_target_dependencies(monte_carlo_pi_sub rclcpp std_msgs)
 
+# ColorRGBA_pub
+add_executable(ColorRGBA_pub src/ColorRGBA_pub.cpp)
+ament_target_dependencies(ColorRGBA_pub rclcpp std_msgs)
+
+# ColorRGBA_sub
+add_executable(ColorRGBA_sub src/ColorRGBA_sub.cpp)
+ament_target_dependencies(ColorRGBA_sub rclcpp std_msgs)
+
+# int32_array_pub
+add_executable(int32_array_pub src/int32_array_pub.cpp)
+ament_target_dependencies(int32_array_pub rclcpp std_msgs)
+
+# int32_array_sub
+add_executable(int32_array_sub src/int32_array_sub.cpp)
+ament_target_dependencies(int32_array_sub rclcpp std_msgs)
+
 # Install Cpp executables
 install(TARGETS
-  monte_carlo_pi_pub
-  monte_carlo_pi_sub
+  int32_array_pub
+  int32_array_sub
   talker
   listener
   float32_pub
   odometry_pub
   laserscan_pub
   twist_pub
+  uint8_pub
+  uint8_sub
   occupancy_grid_pub
   imu_pub
   point_cloud_pub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub
+  ColorRGBA_pub
+  ColorRGBA_sub
+  monte_carlo_pi_pub
+  monte_carlo_pi_sub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
