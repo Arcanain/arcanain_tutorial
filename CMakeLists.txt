@@ -9,13 +9,15 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(rclcpp REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
+find_package(pcl_conversions REQUIRED)
+find_package(PCL REQUIRED COMPONENTS common)
+find_package(tf2_geometry_msgs REQUIRED)
 
 # talker
 add_executable(talker src/publisher_member_function.cpp)
@@ -61,6 +63,10 @@ ament_target_dependencies(imu_pub rclcpp sensor_msgs tf2_ros geometry_msgs nav_m
 add_executable(point_cloud_pub src/point_cloud_pub.cpp)
 ament_target_dependencies(point_cloud_pub rclcpp sensor_msgs geometry_msgs tf2_ros geometry_msgs)
 
+# point_cloud_sub
+add_executable(point_cloud_sub src/point_cloud_sub.cpp)
+ament_target_dependencies(point_cloud_sub rclcpp sensor_msgs geometry_msgs tf2_ros geometry_msgs)
+
 # single_obstacle_detector_pub
 add_executable(single_obstacle_detector_pub src/single_obstacle_detector_pub.cpp)
 ament_target_dependencies(single_obstacle_detector_pub rclcpp nav_msgs geometry_msgs std_msgs visualization_msgs)
@@ -93,6 +99,17 @@ ament_target_dependencies(int32_array_pub rclcpp std_msgs)
 add_executable(int32_array_sub src/int32_array_sub.cpp)
 ament_target_dependencies(int32_array_sub rclcpp std_msgs)
 
+# tf_base_link
+add_executable(tf_base_link src/tf_base_link.cpp)
+ament_target_dependencies(tf_base_link rclcpp tf2_ros sensor_msgs pcl_conversions tf2_geometry_msgs)
+
+# tf_base_link_sub
+add_executable(tf_base_link_sub src/tf_base_link_sub.cpp)
+ament_target_dependencies(tf_base_link_sub rclcpp tf2_ros sensor_msgs pcl_conversions tf2_geometry_msgs)
+
+target_link_libraries(tf_base_link ${PCL_LIBRARIES})
+target_link_libraries(tf_base_link_sub ${PCL_LIBRARIES})
+
 # Install Cpp executables
 install(TARGETS
   int32_array_pub
@@ -108,12 +125,15 @@ install(TARGETS
   occupancy_grid_pub
   imu_pub
   point_cloud_pub
+  point_cloud_sub
   single_obstacle_detector_pub
   multi_obstacle_detector_pub
   ColorRGBA_pub
   ColorRGBA_sub
   monte_carlo_pi_pub
   monte_carlo_pi_sub
+  tf_base_link
+  tf_base_link_sub
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
@@ -123,6 +143,10 @@ install(DIRECTORY
   urdf
   DESTINATION share/${PROJECT_NAME}
 )
+
+install(TARGETS
+  tf_base_link
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

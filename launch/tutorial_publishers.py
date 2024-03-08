@@ -103,6 +103,12 @@ def generate_launch_description():
         output="screen",
     )
 
+    point_cloud_sub_node = Node(
+        package=package_name,
+        executable='point_cloud_sub',
+        output="screen",
+    )
+
     single_obstacle_detector_node = Node(
         package=package_name,
         executable='single_obstacle_detector_pub',
@@ -157,6 +163,18 @@ def generate_launch_description():
         output="screen",
     )
 
+    tf_base_link_node = Node(
+        package=package_name,
+        executable='tf_base_link',
+        output="screen",
+    )
+
+    tf_base_link_sub_node = Node(
+        package=package_name,
+        executable='tf_base_link_sub',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -171,6 +189,7 @@ def generate_launch_description():
         uint8_pub_node,
         occupancy_grid_node,
         point_cloud_node,
+        point_cloud_sub_node,
         single_obstacle_detector_node,
         multi_obstacle_detector_node,
         imu_pub_node,
@@ -180,6 +199,8 @@ def generate_launch_description():
         ColorRGBA_sub_node,
         int32_array_pub_node,
         int32_array_sub_node,
+        tf_base_link_node,
+        tf_base_link_sub_node,
     ]
 
     return LaunchDescription(nodes)
