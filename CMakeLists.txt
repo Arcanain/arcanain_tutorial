@@ -9,13 +9,13 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(rclcpp REQUIRED)
 find_package(tf2_geometry_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(visualization_msgs REQUIRED)
+find_package(tf2 REQUIRED)
 
 # talker
 add_executable(talker src/publisher_member_function.cpp)
@@ -93,6 +93,10 @@ ament_target_dependencies(int32_array_pub rclcpp std_msgs)
 add_executable(int32_array_sub src/int32_array_sub.cpp)
 ament_target_dependencies(int32_array_sub rclcpp std_msgs)
 
+# tf_baselink_sub
+add_executable(tf_baselink src/tf_baselink.cpp)
+ament_target_dependencies(tf_baselink rclcpp sensor_msgs tf2_ros tf2_geometry_msgs tf2)
+
 # Install Cpp executables
 install(TARGETS
   int32_array_pub
@@ -114,6 +118,7 @@ install(TARGETS
   ColorRGBA_sub
   monte_carlo_pi_pub
   monte_carlo_pi_sub
+  tf_baselink
   DESTINATION lib/${PROJECT_NAME})
 
 # Install other files
@@ -123,6 +128,10 @@ install(DIRECTORY
   urdf
   DESTINATION share/${PROJECT_NAME}
 )
+
+install(TARGETS
+  tf_baselink
+  DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
