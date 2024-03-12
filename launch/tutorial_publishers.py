@@ -157,6 +157,12 @@ def generate_launch_description():
         output="screen",
     )
 
+    tf_baselink_node = Node(
+        package=package_name,
+        executable='tf_baselink',
+        output="screen",
+    )
+
     nodes = [
         rviz_node,
         robot_description_rviz_node,
@@ -180,6 +186,7 @@ def generate_launch_description():
         ColorRGBA_sub_node,
         int32_array_pub_node,
         int32_array_sub_node,
+        tf_baselink_node,
     ]
 
     return LaunchDescription(nodes)
