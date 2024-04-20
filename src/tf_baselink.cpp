@@ -28,7 +28,7 @@ private:
       point_in.point.y = point.y;
       point_in.point.z = point.z;
       point_in.header.frame_id = msg->header.frame_id;
-      point_in.header.stamp = rclcpp::Time(0);       // Use the latest available transform
+      point_in.header.stamp = rclcpp::Time(0);
 
       try {
         tf_buffer_->transform(point_in, point_out, "base_link");
