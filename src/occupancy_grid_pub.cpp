@@ -1,6 +1,7 @@
 #include "nav_msgs/msg/occupancy_grid.hpp"
 #include "rclcpp/rclcpp.hpp"
 
+
 using std::placeholders::_1;
 using namespace std::chrono_literals;
 
